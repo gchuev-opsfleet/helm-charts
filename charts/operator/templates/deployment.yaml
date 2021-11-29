@@ -44,6 +44,14 @@ spec:
               port: 8081
             initialDelaySeconds: 15
             periodSeconds: 20
+          {{- if .Values.operator.environment }}
+          env:
+            {{ toYaml .Values.controller.labels | indent 8 }}
+          {{- end }}
+
+          # env:
+          #   - name: ROOKOUT_TOKEN
+          #     value: "00926854c5ea15c7172f938c4e0456e2d54fa23c9ed638ca5520c4f4e574595b"
           name: manager
           readinessProbe:
             httpGet:

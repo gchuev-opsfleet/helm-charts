@@ -1,18 +1,16 @@
 image:
-  repository: "rookout/k8s-operator"
+  repository: "local/operator"
   tag: "latest"
-  pullPolicy: "Always"
-
+  pullPolicy: "Never"
 operator:
   matchers:
-    - deployment: "test_deployment"
-      container: "test_container"
-      namespace: "test_namespace"
-      labels:
+    - labels:
         env: "test_env"
       env_vars:
         - name: "ROOKOUT_TOKEN"
-          value: "<YOUR TOKEN>"
+          value: "00926854c5ea15c7172f938c4e0456e2d54fa23c9ed638ca5520c4f4e574595b"
+        - name: "ROOKOUT_DEBUG"
+          value: "true"
 
   init_container:
     image: "rookout/k8s-operator-init-container"
@@ -23,5 +21,5 @@ operator:
       cpu: 30m
       memory: 32Mi
     limits:
-      cpu: 4000m
+      cpu: 2000m
       memory: 1024Mi
